@@ -48,7 +48,22 @@ Continous path operations use "time" to describe a position along the path, star
                     ^ time = 2.5
 ```
 
+### Distance
+
 Time is not usually convenient to work with directly, since it is not garaunteed to be uniform across the path. Usually you'll want to use `path.timeAtDistance()` to convert a distance value in project units to path time.
+
+A typical example of distributing positions along a path with distance, assuming some `path` exists already.
+
+```js
+const count = 10;
+const pathLength = path.length();
+const points = range(count).map((i) => {
+  const interpolation = i / (count - 1); // Map the i to the 0 -> 1 range
+  const distance = interpolation * pathLength; // Multiply by the total length of the path
+  const time = path.timeAtDistance(distance); // Convert distance to time
+  return path.positionAtTime(time); // Use time to get a position on the path
+});
+```
 
 ## Generators vs Modifiers
 

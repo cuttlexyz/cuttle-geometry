@@ -1,6 +1,6 @@
 import { Anchor } from "./anchor";
 import { Color } from "./color";
-import { Geometry } from "./geometry";
+import { ExportOptions, Geometry } from "./geometry";
 import { Group } from "./group";
 import { clamp } from "./math";
 import { AffineMatrix } from "./matrix";
@@ -8,7 +8,6 @@ import { Path } from "./path";
 import { Shape } from "./shape";
 import { Fill, Stroke } from "./style";
 import { isValidUnit, scaleFactorForUnitConversion, Unit } from "./units";
-import { ExportOptions } from "./util";
 import { Vec } from "./vec";
 
 export interface ImportSVGOptions {
@@ -91,7 +90,7 @@ const transformGeometryForViewbox = (
 ) => {
   const viewboxAttribute = getStringAttribute(svgNode, "viewBox", undefined);
   if (viewboxAttribute !== undefined) {
-    const viewboxNumbers = viewboxAttribute.split(" ").map((s) => parseFloat(s));
+    const viewboxNumbers = viewboxAttribute.split(/[\s,]+/).map((s) => parseFloat(s));
     // Translate so origin is at top-left of viewbox.
     geometry.transform({ position: new Vec(-viewboxNumbers[0], -viewboxNumbers[1]) });
 
@@ -256,8 +255,10 @@ export const geometryFromSVGNode = (
   if (strokeAttribute !== null && strokeAttribute !== "none") {
     const color = Color.fromCSSString(strokeAttribute);
     const width = getNumberAttribute(svgNode, "stroke-width", 1);
-    const cap = getStringAttribute(svgNode, "stroke-linecap", undefined);
-    const join = getStringAttribute(svgNode, "stroke-linejoin", undefined);
+    let cap = getStringAttribute(svgNode, "stroke-linecap", undefined);
+    if (!Stroke.isValidCap(cap)) cap = undefined;
+    let join = getStringAttribute(svgNode, "stroke-linejoin", undefined);
+    if (!Stroke.isValidJoin(join)) join = undefined;
     const miterLimit = getNumberAttribute(svgNode, "stroke-miterlimit", undefined);
     const stroke = new Stroke(color, false, width, "centered", cap, join, miterLimit);
     result.assignStroke(stroke);

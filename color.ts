@@ -2,6 +2,8 @@ import { expressionCodeForNumber } from "./math";
 
 // Color conversions via https://github.com/Qix-/color-convert/blob/master/conversions.js
 export class Color {
+  static displayName = "Color";
+
   r: number;
   g: number;
   b: number;

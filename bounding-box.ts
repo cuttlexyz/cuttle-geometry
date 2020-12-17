@@ -1,6 +1,8 @@
 import { Vec } from "./vec";
 
 export class BoundingBox {
+  static displayName = "BoundingBox";
+
   min: Vec;
   max: Vec;
 

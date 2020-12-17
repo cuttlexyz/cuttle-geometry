@@ -5,7 +5,6 @@ import { AffineMatrix, TransformArgs } from "./matrix";
 import type { Path } from "./path";
 import type { Shape } from "./shape";
 import { Fill, Stroke } from "./style";
-import type { ClosestPointResult, ExportOptions } from "./util";
 import { Vec } from "./vec";
 
 export abstract class Geometry {
@@ -103,4 +102,16 @@ export abstract class Geometry {
     if (a instanceof Geometry) return a.isValid();
     return false;
   }
+}
+
+export interface ClosestPointResult {
+  distance: number;
+  position?: Vec;
+  time?: number;
+}
+
+export interface ExportOptions {
+  hairlineStrokeWidth?: number;
+  maxPrecision?: number;
+  useSVGPathClipping?: boolean;
 }

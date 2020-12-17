@@ -1,14 +1,15 @@
 import { BoundingBox } from "./bounding-box";
 import { DEFAULT_TOLERANCE } from "./constants";
-import { Geometry } from "./geometry";
+import { ClosestPointResult, Geometry } from "./geometry";
 import { AffineMatrix } from "./matrix";
-import { ClosestPointResult } from "./util";
 import { Vec } from "./vec";
 
 const tempHandleIn = new Vec();
 const tempHandleOut = new Vec();
 
 export class Anchor extends Geometry {
+  static displayName = "Anchor";
+
   position: Vec;
   handleIn: Vec;
   handleOut: Vec;

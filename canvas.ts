@@ -1,7 +1,7 @@
+import { ExportOptions } from "./geometry";
 import { Path } from "./path";
 import { Shape } from "./shape";
 import { Stroke } from "./style";
-import { ExportOptions } from "./util";
 import { Vec } from "./vec";
 
 // Dummy HTML Canvas context for running isPointInPath and isPointInStroke.

@@ -16,6 +16,8 @@ export interface TransformArgs {
 }
 
 export class Transform implements TransformArgs {
+  static displayName = "Transform";
+
   position: Vec;
   rotation: number;
   scale: Vec;
@@ -62,6 +64,8 @@ export class Transform implements TransformArgs {
 }
 
 export class AffineMatrix {
+  static displayName = "AffineMatrix";
+
   a: number;
   b: number;
   c: number;

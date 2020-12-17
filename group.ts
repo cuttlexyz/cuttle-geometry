@@ -1,16 +1,17 @@
 import { BoundingBox } from "./bounding-box";
 import { Color } from "./color";
 import { DEFAULT_TOLERANCE } from "./constants";
-import { Geometry } from "./geometry";
+import { ClosestPointResult, ExportOptions, Geometry } from "./geometry";
 import { AffineMatrix } from "./matrix";
 import { Path } from "./path";
 import { copyPkPath, deletePkPath, fromPkPath, PathKit, performStroke, toPkPath } from "./pathkit";
 import { Shape } from "./shape";
 import { Fill, Stroke } from "./style";
-import { ClosestPointResult, ExportOptions } from "./util";
 import { Vec } from "./vec";
 
 export class Group extends Geometry {
+  static displayName = "Group";
+
   items: Geometry[];
 
   constructor(items: Geometry[] = []) {

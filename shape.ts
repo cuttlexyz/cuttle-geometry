@@ -1,7 +1,7 @@
 import { opentype } from "../deps";
 import { BoundingBox } from "./bounding-box";
 import { dummyCanvasCtx, paintToCanvas, styleContainsPoint } from "./canvas";
-import { Geometry } from "./geometry";
+import { ClosestPointResult, ExportOptions, Geometry } from "./geometry";
 import { Group } from "./group";
 import { AffineMatrix } from "./matrix";
 import { Path } from "./path";
@@ -18,10 +18,11 @@ import {
 } from "./pathkit";
 import { Fill, Stroke } from "./style";
 import { pathOrShapeToSVGString } from "./svg";
-import { ClosestPointResult, ExportOptions } from "./util";
 import { Vec } from "./vec";
 
 export class Shape extends Geometry {
+  static displayName = "Shape";
+
   paths: Path[];
 
   stroke?: Stroke;

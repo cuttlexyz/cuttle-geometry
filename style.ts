@@ -5,6 +5,8 @@ export type StrokeCap = "butt" | "round" | "square";
 export type StrokeJoin = "miter" | "round" | "bevel";
 
 export class Stroke {
+  static displayName = "Stroke";
+
   color: Color;
   hairline: boolean;
   width: number;
@@ -43,23 +45,33 @@ export class Stroke {
     );
   }
 
+  static isValidAlignment(alignment: unknown): alignment is StrokeAlignment {
+    return alignment === "centered" || alignment === "inner" || alignment === "outer";
+  }
+  static isValidCap(cap: unknown): cap is StrokeCap {
+    return cap === "butt" || cap === "round" || cap === "square";
+  }
+  static isValidJoin(join: unknown): join is StrokeJoin {
+    return join === "miter" || join === "round" || join === "bevel";
+  }
+
   static isValid(stroke: unknown): stroke is Stroke {
     return (
       stroke instanceof Stroke &&
       Color.isValid(stroke.color) &&
       typeof stroke.hairline === "boolean" &&
       typeof stroke.width === "number" &&
-      (stroke.alignment === "centered" ||
-        stroke.alignment === "inner" ||
-        stroke.alignment === "outer") &&
-      (stroke.cap === "butt" || stroke.cap === "round" || stroke.cap === "square") &&
-      (stroke.join === "miter" || stroke.join === "round" || stroke.join === "bevel") &&
-      typeof stroke.miterLimit === "number"
+      typeof stroke.miterLimit === "number" &&
+      Stroke.isValidAlignment(stroke.alignment) &&
+      Stroke.isValidCap(stroke.cap) &&
+      Stroke.isValidJoin(stroke.join)
     );
   }
 }
 
 export class Fill {
+  static displayName = "Fill";
+
   color: Color;
 
   constructor(color = new Color(0, 0, 0, 1)) {

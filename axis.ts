@@ -10,6 +10,8 @@ const defaultDirections = [
 ];
 
 export class Axis extends Geometry {
+  static displayName = "Axis";
+
   origin: Vec;
   direction: Vec;
 

@@ -8,6 +8,8 @@ import { equalWithinRelativeEpsilon, expressionCodeForNumber, saturate } from ".
 import { AffineMatrix, TransformArgs } from "./matrix";
 
 export class Vec {
+  static displayName = "Vec";
+
   x: number;
   y: number;
 

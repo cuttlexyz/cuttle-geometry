@@ -1,7 +1,7 @@
 import { Anchor } from "./anchor";
 import { BoundingBox } from "./bounding-box";
 import { dummyCanvasCtx, paintToCanvas, styleContainsPoint } from "./canvas";
-import { Geometry } from "./geometry";
+import { ClosestPointResult, ExportOptions, Geometry } from "./geometry";
 import { Group } from "./group";
 import { clamp, tan } from "./math";
 import { AffineMatrix } from "./matrix";
@@ -25,10 +25,12 @@ import {
 import { Shape } from "./shape";
 import { Fill, Stroke } from "./style";
 import { pathOrShapeToSVGString } from "./svg";
-import { ClosestPointResult, ExportOptions, pairs, rotateArray } from "./util";
+import { pairs, rotateArray } from "./util";
 import { Vec } from "./vec";
 
 export class Path extends Geometry {
+  static displayName = "Path";
+
   anchors: Anchor[];
   closed: boolean;
 

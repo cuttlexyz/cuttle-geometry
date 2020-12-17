@@ -14,6 +14,7 @@ export * from "./random";
 export * from "./segment";
 export * from "./shape";
 export * from "./style";
+export * from "./svg";
 export * from "./units";
 export * from "./util";
 export * from "./vec";
